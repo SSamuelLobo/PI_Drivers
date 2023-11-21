@@ -11,6 +11,16 @@ const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}
   logging: false, 
   native: false, 
 });
+
+/*------------------------------------------------------------------------------------------------------------------------------------ */
+/*Esta técnica es útil cuando tienes varios modelos y quieres cargarlos de manera dinámica en lugar de cargarlos manualmente uno por uno. */
+/*Por ejemplo */
+// const DriverModel = require('./models/Driver');
+// const TeamsModel = require('./models/Teams');
+
+// DriverModel(sequelize);
+// TeamsModel(sequelize);
+
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -21,17 +31,25 @@ fs.readdirSync(path.join(__dirname, '/models'))
     modelDefiners.push(require(path.join(__dirname, '/models', file)));
   });
 
-
 modelDefiners.forEach(model => model(sequelize));
 
+
+/* convierte la primera letra de cada nombre de modelo en mayúscula */
 let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Driver } = sequelize.models;
+/*------------------------------------------------------------------------------------------------------------------------------------ */
+
+const { Driver , Teams , User } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
+/*OJOOO ACCCA ESTO ESTA CUESTIONABLE */
+User.belongsToMany(Driver, { through: 'user_driver' });
+Driver.belongsToMany(User, { through: 'user_driver' })
+Driver.belongsToMany(Teams, { through: 'driver_team' });
+Teams.belongsToMany(Driver, { through: 'driver_team' });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
