@@ -17,6 +17,14 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    nationality:{
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    birthdate:{
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
     description:{
       type: DataTypes.TEXT,
       allowNull: false,
@@ -24,14 +32,6 @@ module.exports = (sequelize) => {
     image:{
       type: DataTypes.STRING,
       allowNull: false
-    },
-    Nationality:{
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    birthdate:{
-      type: DataTypes.DATE,
-      allowNull: false,
     }
   }, { timestamps: false });
 };
