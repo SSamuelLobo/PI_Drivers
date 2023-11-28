@@ -2,7 +2,13 @@ const { getAllDriversController } = require("../controllers/driversControllers/g
 const { getDriverByIdController } = require("../controllers/driversControllers/getDriverById.js")
 const { getDriverByNameController } = require("../controllers/driversControllers/getDriverByName.js")
 const { creatDriverController } = require("../controllers/driversControllers/creatDriver.js")
+const { updateDriverController } = require("../controllers/driversControllers/updateDriver.js")
+const { deleteDriverController } = require("../controllers/driversControllers/deleteDriver.js")
 const { getAllTeamsController } = require("../controllers/teamsControllers/getAllTeams.js")
+const { getUserController } = require("../controllers/usersControllers/getUser.js")
+const { createUserController } = require("../controllers/usersControllers/creatUser.js")
+
+
 
 // 📍GET | /drivers
 // Obtiene un arreglo de objetos, donde cada objeto es un driver con su información.
@@ -13,7 +19,8 @@ const getAllDrivers = async ( req , res ) => {
         const allDrivers = await getAllDriversController() ;
         res.status(200).json(allDrivers)
     } catch (error) {
-        res.status(400).json({error: error.message})
+        console.error("Error en getAllDrivers:", error);
+        res.status(500).json({ error: "Hubo un error al obtener todos los conductores." });
     }
 }
 
@@ -75,6 +82,38 @@ const creatDriver = async ( req , res )=>{
 }
 
 /*------------------------------------------------------------------------------------------------------------------------------------- */
+/*Extras modificar Driver en la base de Datos*/
+const updateDriver = async ( req , res) =>{
+    try {
+        const { idDriver } = req.params;
+        const newDriverData = req.body ;
+        
+        const updatedDriver = await updateDriverController( idDriver , newDriverData ) ;
+        return res.status(200).send(updatedDriver)
+
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+}
+
+const deleteDriver = async (req , res) =>{
+    try {
+        const { idDriver } = req.params;
+
+        const deleteResult = await deleteDriverController(idDriver);
+
+        if (!deleteResult) {
+            return res.status(404).json({ error: 'Conductor no encontrado' });
+        }
+
+        return res.status(200).json({ message: 'Conductor eliminado correctamente' });
+
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------------- */
 // 📍 GET | /teams
 // Obtiene un arreglo con todos los teams existentes de la API.
 // En una primera instancia, cuando la base de datos este vacía, deberás guardar todos los teams que encuentres en la API.
@@ -90,6 +129,36 @@ const getAllTeams = async ( req , res ) => {
     }
 }
 
+/*------------------------------------------------------------------------------------------------------------------------------------- */
+/*Users*/
+
+const getUser = async ( req , res ) => {
+    try {
+        const { email , password } = req.query ;
+        const User = await getUserController( email , password );
+
+        if (!User) {
+            return res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+        res.status(200).json(User)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+}
+
+
+const createUser = async ( req , res ) => {
+    try {
+        const { email , password , name , lastname } = req.body ;
+        const newUser = await createUserController(email , password , name ,lastname) ;
+        return res.status(200).send(newUser)
+
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+}
+
+
 
 
 module.exports = {
@@ -97,5 +166,9 @@ module.exports = {
     getDriverById,
     getDriverByName,
     creatDriver,
-    getAllTeams
+    updateDriver,
+    deleteDriver,
+    getAllTeams,
+    getUser,
+    createUser
 }
