@@ -1,6 +1,7 @@
 const axios = require('axios');
 /*Urls */
 const API_URL = 'http://localhost:5000/drivers'; 
+const defaultImageUrl = 'https://tse3.mm.bing.net/th?id=OIP.n_d2dvzb5zOdPb_dtFuh-wHaEW&pid=Api&P=0&h=220';
 
 const { Op } = require('sequelize');
 
@@ -102,16 +103,34 @@ const getDriverByNameController = async ( name ) => {
         (driver, index, self) => index === self.findIndex(d => d.id === driver.id)
     );
 
-    const combinedDrivers = uniqueDriversFromAPI.map(driver => ({
-        id: driver.id,
-        name: driver.name.charAt(0).toUpperCase() + driver.name.slice(1).toLowerCase(),
-        lastname: driver.lastname.charAt(0).toUpperCase() + driver.lastname.slice(1).toLowerCase(),
-        birthdate: driver.birthdate,
-        nationality: driver.nationality,
-        description: driver.description,
-        teams:driver.teams,
-        image: driver.image
-    })).concat(driversFromDB);
+
+    const combinedDrivers = uniqueDriversFromAPI.map(driver => {
+        // Manejar los casos en los que no hay descripción, equipo o imagen
+        const description = driver.description ? driver.description : 'Sin descripción';
+        const teams = driver.teams ? driver.teams : 'Sin equipo';
+        const imageUrl = driver.image ? driver.image.url : defaultImageUrl;
+
+        return {
+            id: driver.id,
+            name: driver.name.charAt(0).toUpperCase() + driver.name.slice(1).toLowerCase(),
+            lastname: driver.lastname.charAt(0).toUpperCase() + driver.lastname.slice(1).toLowerCase(),
+            birthdate: driver.dob,
+            nationality: driver.nationality,
+            description: description,
+            teams: teams,
+            image: imageUrl
+        };
+    }).concat(driversFromDB);
+    // const combinedDrivers = uniqueDriversFromAPI.map(driver => ({
+    //     id: driver.id,
+    //     name: driver.name.charAt(0).toUpperCase() + driver.name.slice(1).toLowerCase(),
+    //     lastname: driver.lastname.charAt(0).toUpperCase() + driver.lastname.slice(1).toLowerCase(),
+    //     birthdate: driver.dob,
+    //     nationality: driver.nationality,
+    //     description: driver.description,
+    //     teams:driver.teams,
+    //     image: driver.image
+    // })).concat(driversFromDB);
 
 
     /* estás concatenando los resultados de la base de datos y

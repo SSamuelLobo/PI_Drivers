@@ -1,0 +1,15 @@
+.container-nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgb(35, 136, 167);
+    padding: 15px 0px; /* Agrega relleno para mejorar la apariencia */
+    z-index: 10;
+}
+
+.container-nav__searchBar{
+    position: absolute;
+    top: 25px;
+    right: 100px;
+}

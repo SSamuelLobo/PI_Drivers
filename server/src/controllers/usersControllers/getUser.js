@@ -18,6 +18,7 @@ const getUserController = async ( email , password ) => {
     return {
         user: userFromDB,
         drivers: drivers,
+        access: true
     };
 
 }
