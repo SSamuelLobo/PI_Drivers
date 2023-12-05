@@ -1,10 +1,6 @@
 /* Obtener Handlers */
-<<<<<<< HEAD
 const { getAllDrivers , getAllDriversFromBD , getDriverById , getDriverByName , creatDriver , updateDriver , deleteDriver,
-=======
-const { getAllDrivers , getDriverById , getDriverByName , creatDriver , updateDriver , deleteDriver,
->>>>>>> c7d2fb7363d3a74735678d63654ad9fee2249b78
-     getAllTeams , getUser , createUser } = require("../handlers/index.js")
+          getAllTeams , getUser , createUser } = require("../handlers/index.js")
 
 /* */
 const { Router } = require("express");
@@ -14,11 +10,8 @@ const router = Router();
 /*Routes Drivers */
 router.get('/drivers', getAllDrivers);
 
-<<<<<<< HEAD
 router.get('/driversFromBD', getAllDriversFromBD);
 
-=======
->>>>>>> c7d2fb7363d3a74735678d63654ad9fee2249b78
 router.get('/drivers/:idDriver', getDriverById);
 
 router.get('/driver/name', getDriverByName);///drivers?name.forename={name}

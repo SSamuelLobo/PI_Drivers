@@ -1,8 +1,5 @@
 const { getAllDriversController } = require("../controllers/driversControllers/getAllDrivers.js")
-<<<<<<< HEAD
 const { getAllDriversFromBDController } = require("../controllers/driversControllers/getAllDriversFromBD.js")
-=======
->>>>>>> c7d2fb7363d3a74735678d63654ad9fee2249b78
 const { getDriverByIdController } = require("../controllers/driversControllers/getDriverById.js")
 const { getDriverByNameController } = require("../controllers/driversControllers/getDriverByName.js")
 const { creatDriverController } = require("../controllers/driversControllers/creatDriver.js")
@@ -29,8 +26,6 @@ const getAllDrivers = async ( req , res ) => {
 }
 
 
-<<<<<<< HEAD
-
 const getAllDriversFromBD = async ( req , res ) => {
     try {
         const AllDriversFromBD = await getAllDriversFromBDController() ;
@@ -41,8 +36,6 @@ const getAllDriversFromBD = async ( req , res ) => {
     }
 }
 
-=======
->>>>>>> c7d2fb7363d3a74735678d63654ad9fee2249b78
 /*------------------------------------------------------------------------------------------------------------------------------------- */
 
 // 📍 GET | /drivers/:idDriver
@@ -180,10 +173,7 @@ const createUser = async ( req , res ) => {
 
 module.exports = {
     getAllDrivers,
-<<<<<<< HEAD
     getAllDriversFromBD,
-=======
->>>>>>> c7d2fb7363d3a74735678d63654ad9fee2249b78
     getDriverById,
     getDriverByName,
     creatDriver,
