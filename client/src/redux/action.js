@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 // acciones.js
 import axios from "axios";
 import { SET_ALL_DRIVERS , SET_DRIVERS_FILTER ,  SET_DRIVERS_ORDER , SET_SELECTED_SOURCE } from "./types";
@@ -101,23 +101,5 @@ export const orderDrivers = (order) => {
 //     type: ORDER_DIVERS,
 //     payload: name,
 // });
-=======
-import { SEARCH_DRIVERS, FILTER_TEAMS, ORDER_DIVERS } from '../types';
 
-// Acción para buscar conductores
-export const searchDrivers = (name) => ({
-    type: SEARCH_DRIVERS,
-    payload: name,
-  });
-
-export const filterTeams = (team) => ({
-    type: FILTER_TEAMS,
-    payload: name,
-});
-
-export const orderDrivers = (order) => ({
-    type: ORDER_DIVERS,
-    payload: name,
-});
->>>>>>> c7d2fb7363d3a74735678d63654ad9fee2249b78
   
