@@ -12,8 +12,6 @@ import axios from 'axios';
 const Nav = () => {
 
     const [searchRequest, setSearchRequest] = useState(null); // Controlador de cancelación
-
-  
  /*---------------------------------------------------------------------------------------------------- */
  /*Problemitas */
 

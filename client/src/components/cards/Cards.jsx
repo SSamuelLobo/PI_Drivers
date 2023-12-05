@@ -6,6 +6,7 @@ const Cards = ({drivers}) => {
     return(
         <div>
             <h1>Qlq soy el Home</h1>
+
             {drivers.map(({id, name, lastname , nationality , teams , description , image})=>{
                 return (
                     <Card 
