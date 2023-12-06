@@ -1,3 +1,6 @@
+/*Import from App.css */
+import "./App.css";
+
 /*Importar los archivos */
 import Nav from "./components/nav/Nav"
 import Form from "./components/form/Form"
@@ -14,7 +17,7 @@ const  App = () => {
   const location = useLocation();
 
   return (
-    <div>
+    <div className="container-App">
       {location.pathname !== '/' && <Nav/>}
 
         <Routes>

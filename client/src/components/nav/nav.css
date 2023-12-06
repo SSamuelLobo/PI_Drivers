@@ -3,7 +3,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgb(35, 136, 167, 0.4);
+    background-color: rgb(35, 136, 167);
     padding: 15px 0px; /* Agrega relleno para mejorar la apariencia */
     z-index: 10;
 }
@@ -13,3 +13,12 @@
     top: 25px;
     right: 100px;
 }
+
+.container-nav__button {
+    display: flex; /* Usa display: flex para que los botones se alineen en línea */
+  }
+  
+  .container-nav__button button {
+    margin-left: 40px; /* Ajusta el margen entre los botones según sea necesario */
+  }
+

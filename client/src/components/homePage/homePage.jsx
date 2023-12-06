@@ -1,3 +1,5 @@
+import "./homePage.css"
+
 /*Importaciones de otros archivos*/
 import Pages from "../pages/Pages"
 
@@ -58,10 +60,11 @@ const HomePage = () =>{
 
 
     return(
-        <div>
-          <h1>Soy Home</h1>
+        <div className="container-homePage">
+          <h1>Home</h1>
 
-          <select value={selectedSource} onChange={handleChangeSource}>
+        <div className="container-homePage__source">
+        <select  value={selectedSource} onChange={handleChangeSource}>
             <option value="From-Api">From API</option>
             <option value="From-BD">From Database</option>
           </select>
@@ -80,7 +83,8 @@ const HomePage = () =>{
                 </option>
               ))}
           </select>
-
+        </div>
+          
           <Pages/>
           {/* <Cards/> */}
         </div>

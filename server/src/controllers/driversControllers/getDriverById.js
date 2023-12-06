@@ -32,15 +32,17 @@ const getDriverByIdController = async (idDriver) => {
         const response = await axios.get(`${API_URL}/${idDriver}`);
         const driver = response.data;
 
+        const teamsArray = driver && driver.teams ? driver.teams.split(',').map(team => team.trim()) : [];
+
         driverDetails = {
             id: driver.id,
             name: driver.name.forename,
             lastname: driver.name.surname,
             birthdate: driver.dob,
             nationality: driver.nationality,
-            teams: driver.teams,
+            teams: teamsArray,
             description: driver.description,
-            image:driver.url
+            image:driver.image.url
         };
     }
 

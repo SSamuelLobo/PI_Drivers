@@ -51,7 +51,7 @@ const Pages = () => {
                 Siguiente
             </button>
 
-            <Cards drivers={currentDriversPaginated }/>
+            <Cards drivers={currentDriversPaginated}/>
         </div>
     );
 }

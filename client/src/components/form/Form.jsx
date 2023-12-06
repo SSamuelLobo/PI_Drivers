@@ -1,6 +1,8 @@
 import React, { useState , useEffect } from 'react';
 import axios from 'axios';
 import { validateName , validateLastname , validateNationality , validateBirthdate , validateTeamsName , validateDescription , validateImage } from './validation';
+import "./form.css"
+
 
 const Form = () => {
   const [driverInfo, setDriverInfo] = useState({
@@ -131,7 +133,7 @@ useEffect(() => {
   }, []);
 
   return (
-    <div>
+    <div className="form-container">
       <h1>FORM PAGE</h1>
       <form onSubmit={handleSubmit}>
         <label>

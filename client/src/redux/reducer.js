@@ -18,8 +18,7 @@ const reducer = (state = initialState, action) => {
         
       case SET_DRIVERS_FILTER:
         const filterByTeam = [...state.allDrivers].filter((driver) => {
-          const teamsArray = (driver.teams || '').split(',').map(team => team.trim());
-          return teamsArray.includes(action.payload);
+          return (driver.teams || []).includes(action.payload);
         });
         return {
           ...state,

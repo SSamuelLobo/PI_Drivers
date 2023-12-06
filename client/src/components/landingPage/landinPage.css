@@ -1,0 +1,19 @@
+.container-landingPage{
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../../assets/FondoDeInico.jpg') center/cover no-repeat;
+    object-fit: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-landingPage__Button{
+    width: 100px;
+    height: 40px;
+    cursor: pointer;
+}

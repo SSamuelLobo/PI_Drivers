@@ -1,4 +1,5 @@
 import SearchBar from '../searchBar/searchBar';
+import { Link } from "react-router-dom";
 import Button from '../Button/button';
 import "./nav.css"
 
@@ -13,10 +14,17 @@ const Nav = () => {
 
     return (
         <nav className='container-nav'>
-            <div>
-                <Button  link="/home" text="Home" />
-                <Button  link="/form" text="Create Driver" />
+            <div className='container-nav__button'>
+                <Link to={`/home`} >
+                    <button>Home</button>
+                </Link>
+
+                <Link to={`/form`} >
+                    <button>Create Driver</button>
+                </Link>
             </div>
+                
+            
             <div className="container-nav__searchBar">
                 <SearchBar/>
             </div>
