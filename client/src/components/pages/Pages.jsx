@@ -15,12 +15,14 @@ const Pages = () => {
     const currentDrivers =  driversFilter.length > 0
       ? driversFilter
       : allDrivers;
-      
-    const indexOfLastDriver = page * 9;
-    const indexOfFirstDriver = indexOfLastDriver - 9;
-    const currentDriversPaginated = currentDrivers.slice(indexOfFirstDriver, indexOfLastDriver);
 
-    const isNextButtonDisabled = indexOfLastDriver >= currentDrivers.length;
+      
+    const currentDriversPaginated = Array.isArray(currentDrivers)
+    ? currentDrivers.slice((page - 1) * 9, page * 9)
+    : [];
+  
+
+    const isNextButtonDisabled = currentDriversPaginated.length === 0 || (page * 9) >= currentDrivers.length;
 
 
     console.log(currentDrivers);

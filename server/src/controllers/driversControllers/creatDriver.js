@@ -13,13 +13,7 @@ const creatDriverController = async (name , lastname , nationality , birthdate ,
         }
     });
 
-    // const addTeamstoBD = teamsname.map(async teamName => {
-    //     console.log('Team Name:', teamName); // Agregar este console.log
-    //     let [team] = await Teams.findOrCreate({
-    //         where: { name: { [Op.iLike]: `%${teamName}%` } }
-    //     });
-    //     return team;
-    // });
+
     const addTeamstoBD = teamsname.map(async teamName => {
         console.log('Team Name:', teamName);
         let [team] = await Teams.findOrCreate({ where: { name: teamName } });

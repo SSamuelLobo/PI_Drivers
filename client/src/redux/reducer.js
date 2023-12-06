@@ -1,9 +1,10 @@
-import { SET_ALL_DRIVERS , SET_DRIVERS_FILTER , SET_DRIVERS_ORDER, SET_SELECTED_SOURCE } from "./types";
+import { SET_ALL_DRIVERS , SET_DRIVERS_FILTER , SET_DRIVERS_ORDER, SET_SELECTED_SOURCE , SET_DRIVERS_BY_NAME } from "./types";
 
 const initialState = {
-    allDrivers: [], // Aquí guardarás todos tus drivers
+    allDrivers: [], 
     driversFilter:[],
     selectedSource: false,
+    driverByName: [],
 };
 
 
@@ -66,6 +67,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         selectedSource: action.payload === "From-BD", // Actualiza el estado de selectedSource
+        driversFilter:[],
+      };
+
+      case SET_DRIVERS_BY_NAME:
+      return {
+        ...state,
+        allDrivers: action.payload,
         driversFilter:[],
       };
 

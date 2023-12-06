@@ -1,7 +1,7 @@
 
 // acciones.js
 import axios from "axios";
-import { SET_ALL_DRIVERS , SET_DRIVERS_FILTER ,  SET_DRIVERS_ORDER , SET_SELECTED_SOURCE } from "./types";
+import { SET_ALL_DRIVERS , SET_DRIVERS_FILTER ,  SET_DRIVERS_ORDER , SET_SELECTED_SOURCE, SET_DRIVERS_BY_NAME } from "./types";
 
 const endpointApi = 'http://localhost:3001/drivers';
 const endpointDb = 'http://localhost:3001/driversFromBD';
@@ -30,7 +30,14 @@ export const orderDrivers = (order) => {
   return { type: SET_DRIVERS_ORDER , payload: order }
 }
 
-
+export const getDriversByName = async (name, dispatch) => {
+  try {
+    const { data } = await axios.get(`http://localhost:3001/driver/name?name=${name}`);
+    dispatch({ type: SET_DRIVERS_BY_NAME, payload: data });
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 
 
