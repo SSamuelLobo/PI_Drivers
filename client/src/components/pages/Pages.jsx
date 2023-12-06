@@ -25,7 +25,7 @@ const Pages = () => {
     const isNextButtonDisabled = currentDriversPaginated.length === 0 || (page * 9) >= currentDrivers.length;
 
 
-    console.log(currentDrivers);
+    
     const handlePageBefore = () => {
         setPage(page - 1);
     };

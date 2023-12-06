@@ -83,7 +83,6 @@ const creatDriver = async ( req , res )=>{
 
     try {
         const { name, lastname, nationality, birthdate, teamsname, description, image } = req.body ;
-        console.log(name , lastname , nationality , birthdate , teamsname , description , image);
         const newDriver = await creatDriverController(name , lastname , nationality , birthdate , teamsname , description , image) ;
         return res.status(200).send(newDriver)
 
@@ -133,7 +132,6 @@ const deleteDriver = async (req , res) =>{
 const getAllTeams = async ( req , res ) => {
     try {
         const allTeams = await getAllTeamsController() ;
-        console.log(allTeams)
         res.status(200).json(allTeams)
     } catch (error) {
         res.status(400).json({error: error.message})

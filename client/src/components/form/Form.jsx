@@ -132,6 +132,15 @@ useEffect(() => {
     fetchData(); 
   }, []);
 
+  const isValidUrl = (url) => {
+    try {
+      new URL(url);
+      return true;
+    } catch (error) {
+      return false;
+    }
+  };
+
   return (
     <div className="form-container">
       <h1>FORM PAGE</h1>
@@ -206,7 +215,7 @@ useEffect(() => {
           name="description" 
           value={driverInfo.description} 
           onChange={handleChange}
-          className={errors.description && "warning"}
+          className={errors.description && "Description"}
             autoComplete="off"
           />
         </label>
@@ -249,7 +258,7 @@ useEffect(() => {
         <br />
         <hr style={{ borderStyle: "none" }} />      
         <hr style={{ borderStyle: "none" }} />
-        <button type="submit">Crear Nuevo Driver</button>
+        <button type="submit" disabled={!isValidUrl(driverInfo.image)}>Crear Nuevo Driver</button>
       </form>
 
       {showerrorMessage && <p className="fail">Error al crear el usuario. Inténtalo de nuevo.</p>}

@@ -3,12 +3,26 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const formatDate = (rawDate) => {
+  // Creamos la instancia de Date con la fecha proporcionada
   const dateObject = new Date(rawDate);
-  const day = dateObject.getDate().toString().padStart(2, "0");
-  const month = (dateObject.getMonth() + 1).toString().padStart(2, "0");
-  const year = dateObject.getFullYear();
-  return `${day}-${month}-${year}`;
+
+  // Obtenemos el día, mes y año
+  const day = dateObject.getUTCDate().toString().padStart(2, "0");
+  const month = (dateObject.getUTCMonth() + 1).toString().padStart(2, "0");
+  const year = dateObject.getUTCFullYear();
+
+  // Formateamos la fecha según el formato deseado
+  const formattedDate = `${day}-${month}-${year}`;
+
+  return formattedDate;
 };
+
+// const formatDate = (rawDate) => {
+//   const dateObject = new Date(rawDate);
+//   const formattedDate = dateObject.toLocaleDateString('es-ES'); // 'es-ES' para obtener el formato DD/MM/YYYY
+//   return formattedDate;
+// };
+
 
 const Detail = () => {
   const { id } = useParams();
